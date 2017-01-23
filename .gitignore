@@ -1,1 +1,3 @@
-*.o, *.out, HospitalSimulator
+*.o
+*.out
+HospitalSimulator
