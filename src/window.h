@@ -5,10 +5,14 @@ and may not be redistributed without written permission.*/
 
 #include <SDL2/SDL.h>
 #include <stdio.h>
+#include <vector>
+#include "nurse.h"
+#include "patient.h"
 
 class Window{
 public:
     Window();
+    int main(int numIts, int sleepTime, std::vector<Patient> pv, std::vector<Nurse> nv);
     void drawRectangle();
     ~Window();
 private:

@@ -2,6 +2,6 @@
 
 class Patient{
 public:
-    Patient(){time_til_death=10;}
+    Patient();
     int time_til_death;
 };

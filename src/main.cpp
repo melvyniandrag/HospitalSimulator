@@ -29,6 +29,7 @@ SDL_Surface* gScreenSurface = NULL;
 //The image we will load and show on the screen
 SDL_Surface* sickImage = NULL;
 SDL_Surface* deadImage = NULL;
+SDL_Surface* healthyImage = NULL;
 
 bool init()
 {
@@ -69,7 +70,7 @@ bool loadMedia()
 	sickImage = SDL_LoadBMP( "../images/square_sick.bmp" );
 	if( sickImage == NULL )
 	{
-		printf( "Unable to load image %s! SDL Error: %s\n", "03_event_driven_programming/x.bmp", SDL_GetError() );
+		printf( "Unable to load image %s! SDL Error: %s\n", "square_sick.bmp", SDL_GetError() );
 		success = false;
         return success;
 	}
@@ -77,7 +78,16 @@ bool loadMedia()
 	deadImage = SDL_LoadBMP( "../images/dead.bmp" );
 	if( deadImage == NULL )
 	{
-		printf( "Unable to load image %s! SDL Error: %s\n", "03_event_driven_programming/x.bmp", SDL_GetError() );
+		printf( "Unable to load image %s! SDL Error: %s\n", "dead.bmp", SDL_GetError() );
+		success = false;
+	    return success;
+    }
+
+ 
+	healthyImage = SDL_LoadBMP( "../images/square_healthy.bmp" );
+	if( healthyImage == NULL )
+	{
+		printf( "Unable to load image %s! SDL Error: %s\n", "square_healthy.bmp", SDL_GetError() );
 		success = false;
 	    return success;
     }
@@ -195,7 +205,7 @@ int main( int argc, char* args[] )
 				SDL_BlitSurface( deadImage, &srcrect1, gScreenSurface, &dstrect1 );
 				SDL_BlitSurface( sickImage, &srcrect4, gScreenSurface, &dstrect2 );
 				SDL_BlitSurface( sickImage, &srcrect3, gScreenSurface, &dstrect3 );
-				SDL_BlitSurface( deadImage, &srcrect2, gScreenSurface, &dstrect4 );
+				SDL_BlitSurface( healthyImage, &srcrect2, gScreenSurface, &dstrect4 );
 				//Update the surface
 				SDL_UpdateWindowSurface( gWindow );
 			}
