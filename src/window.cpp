@@ -7,6 +7,8 @@
 #include <vector>
 #include "nurse.h"
 #include "patient.h"
+#include "nurse_funcs.h"
+#include "patient_funcs.h"
 
 int Window::main(int numIts, int sleepTime, std::vector<Patient> pv, std::vector<Nurse> nv){
     SDL_Event e;
@@ -18,7 +20,14 @@ int Window::main(int numIts, int sleepTime, std::vector<Patient> pv, std::vector
         }
 
         std::cout << "Currently on iteration " << iteration << std::endl;
-        
+        // move the nurses
+        nurseFuncs::update(nv, pv);
+        // update the patients
+        patientFuncs::update(nv, pv);
+        // update the image
+
+        this->update(nv, pv);
+
         for(auto p : pv){
             std::cout << p.time_til_death << std::endl;
         }
@@ -30,6 +39,10 @@ int Window::main(int numIts, int sleepTime, std::vector<Patient> pv, std::vector
         std::this_thread::sleep_for(std::chrono::seconds(sleepTime));
     }
     return 0;
+}
+
+void Window::update(const std::vector<Nurse> nv, const std::vector<Patient> pv){
+    std::cout << "In window.update()" << std::endl;
 }
 
 Window::Window(){

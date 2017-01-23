@@ -2,14 +2,11 @@
 
 #include "nurse.h"
 #include <vector>
+#include "nurse.h"
+#include "patient.h"
 
 namespace nurseFuncs{
+std::vector<Nurse> get(int);
 
-std::vector<Nurse> get(int numNurses){
-    std::vector<Nurse> nv;
-    for (int i = 0; i < numNurses; ++i){
-        nv.push_back(Nurse());
-    }
-    return nv;
-}
+void update(std::vector<Nurse>&, const std::vector<Patient>);
 }

@@ -1,16 +1,11 @@
 #pragma once
 
 #include "patient.h"
+#include "nurse.h"
 #include <vector>
 
 namespace patientFuncs{
+std::vector<Patient> get(int);
 
-std::vector<Patient> get(int numPats){
-    std::vector<Patient> pv;
-    for(int i = 0; i < numPats; ++i){
-        pv.push_back(Patient());
-    }
-    return pv;
-}
-
+void update(const std::vector<Nurse>, std::vector<Patient>&);
 }
