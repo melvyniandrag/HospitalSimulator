@@ -1,0 +1,5 @@
+1. make a vector of patients
+2. in a loop:
+    3. have nurses move to patients. A patient can be treated by unlimited nurses.
+    4. update patient stats
+    5. update screen
