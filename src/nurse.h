@@ -4,6 +4,9 @@
 
 class Nurse{
 public:
-    Nurse();
+    Nurse(int _y_index);
     std::string name;
+    int current_x;
+    int current_y;
+    int y_index;
 };

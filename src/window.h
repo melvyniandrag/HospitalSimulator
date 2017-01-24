@@ -8,14 +8,22 @@
 
 class Window{
 public:
-    Window();
-    int main(int numIts, int sleepTime, std::vector<Patient> pv, std::vector<Nurse> nv);
-    void drawRectangle();
-    void update(const std::vector<Nurse>, const std::vector<Patient>);
+    Window(const int _numNurses, const int _numPatients, const int _numIts, const int _sleepTime);
+    int main();
+    void update();
     ~Window();
 private:
+    int sleepTime;
+    int numIts;
     SDL_Window* window = NULL;
-    SDL_Renderer* renderer = NULL;
-    const int SCREEN_WIDTH=640;
-    const int SCREEN_HEIGHT=480; 
+    SDL_Surface* mainSurface = NULL;
+    SDL_Surface* noNurseImage = NULL;
+    SDL_Surface* nurseImage = NULL;
+    SDL_Surface* sickImage = NULL;
+    SDL_Surface* deadImage = NULL;
+    SDL_Surface* healthyImage = NULL;
+    const double SCREEN_WIDTH=768;
+    const double SCREEN_HEIGHT=512; 
+    std::vector<Patient> pv;
+    std::vector<Nurse> nv;
 };

@@ -8,7 +8,14 @@ namespace patientFuncs{
 std::vector<Patient> get(int numPats){
     std::vector<Patient> pv;
     for(int i = 0; i < numPats; ++i){
-        pv.push_back(Patient());
+        if (i==0)
+            pv.push_back(Patient(0, 0));
+        if (i == 1)
+            pv.push_back(Patient(0, 1));
+        if (i == 2)
+            pv.push_back(Patient(1, 0));
+        if (i == 3)
+            pv.push_back(Patient(1, 1));
     }
     return pv;
 }
