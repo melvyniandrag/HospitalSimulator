@@ -4,13 +4,16 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <algorithm>
 #include <vector>
 #include <cassert>
+#include <thread>
 #include "nurse.h"
 #include "patient.h"
 #include "nurse_funcs.h"
 #include "patient_funcs.h"
 #include "window.h"
+#include "utility.h"
 
 int Window::main(){
     SDL_Event e;
@@ -43,6 +46,7 @@ int Window::main(){
     return 0;
 }
 
+
 void Window::update(){
     std::cout << "In window.update()" << std::endl;
     for(auto p : this->pv){
@@ -68,23 +72,19 @@ void Window::update(){
         }
     }
 
+
+    std::vector<std::thread> threads;
     for(int x = 0; x < 2; ++x){
         for(int y = 0; y < 2; ++y){
             for(int index = 0; index < 2; ++index){
-                SDL_Rect srcrect;
-                SDL_Rect dstrect;
-                srcrect.x = 0;
-                srcrect.y = 0;
-                srcrect.w = SCREEN_WIDTH/6;
-                srcrect.h = SCREEN_HEIGHT/4;
-
-                dstrect.x = x * (SCREEN_WIDTH/3 + SCREEN_WIDTH/6) + SCREEN_WIDTH/3; 
-                dstrect.y = y * (SCREEN_HEIGHT/2) + index * (SCREEN_HEIGHT/4);
-            
-                SDL_BlitSurface(this->noNurseImage, &srcrect, this->mainSurface, &dstrect);
+                std::thread th(&BlitSurface, this->mainSurface, this->noNurseImage, x, y, index, this->SCREEN_HEIGHT, this->SCREEN_WIDTH);
+                th.join();
+                //threads.push_back((std::move(th)));
+                //assert(!th.joinable());
             }
         }
     }
+//    std::for_each(threads.begin(), threads.end(), [](std::thread & th){th.join();});
 
     for(auto n : this->nv){
         SDL_Rect srcrect;

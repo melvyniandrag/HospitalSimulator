@@ -13,6 +13,7 @@ public:
     void update();
     ~Window();
 private:
+    friend void BlitSurface(SDL_Surface*, SDL_Surface*, int, int, int, const double, const double);
     int sleepTime;
     int numIts;
     SDL_Window* window = NULL;
